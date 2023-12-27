@@ -1,0 +1,13 @@
+<p>Fleet: {fleet.id}</p>
+<p>Ships: {fleet.ships}</p>
+<p>Cargo: {fleet.cargo ? "" : "(none)" }
+    {fleet.cargo.aluminium ? "aluminium x" + fleet.cargo.aluminium : ""}
+    {fleet.cargo.zinc ? "zinc x" + fleet.cargo.zinc : ""}
+    {fleet.cargo.titanium ? "titanium x" + fleet.cargo.titanium : ""}
+    {fleet.cargo.zirconium ? "zirconium x" + fleet.cargo.zirconium : ""}
+    {fleet.cargo.mithril ? "mithril x" + fleet.cargo.mithril : ""}
+</p>
+<p>Location: {fleet.locationSystemId}</p>
+<hr/>
+<p> {fleet.currentAction ? "Action: " + fleet.currentAction.type : ""}</p>
+

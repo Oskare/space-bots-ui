@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Space Bots by Oskare</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        button {
+            color: white !important;
+            background-color: cadetblue !important;
+            margin: 2px !important;
+        }
+    </style>
+
+    <script>
+        // Error handling
+        window.addEventListener("htmx:responseError", function (e) {
+            document.getElementById("error-panel").innerHTML = e.detail.xhr.statusText;
+            setTimeout(() => {
+                document.getElementById("error-panel").innerHTML = "";
+            }, 4000);
+        });
+
+        // Refresh fleet when started action is completed
+        window.addEventListener("action-started", (e) => {
+            setTimeout(() => {
+                htmx.trigger("body", "action-finished", null);
+                document.getElementById("modal-container").innerHTML = "";
+            }, e.detail.duration*1000);
+        });
+    </script>
+</head>
+<body>
+<div class="h-screen bg-slate-300">
+    <!-- Player -->
+    <div class="m-auto border-solid border-2 border-slate-400 h-16 w-96 text-center mb-2"
+         hx-trigger="load, purchase-completed from:body, sale-completed from:body"
+         hx-get="/player">
+        <p>Loading...</p>
+    </div>
+
+    <!-- Fleet -->
+    <div class="m-auto border-solid border-2 border-slate-400 h-32 w-96 text-center mb-16"
+         hx-trigger="load, action-started from:body, action-finished from:body, purchase-completed from:body, sale-completed from:body"
+         hx-get="/fleet">
+        <p>Loading...</p>
+    </div>
+
+    <div class="flex flex-row justify-between">
+        <div class="flex flex-col w-48">
+            <button
+                    hx-get="/ship/selection"
+                    hx-target="#modal-container">
+                Purchase ships
+            </button>
+
+            <button
+                    hx-post="/mining"
+                    hx-target="#modal-container">
+                Mine
+            </button>
+
+            <button
+                hx-get="/systems/selection"
+                hx-target="#modal-container">
+                Travel
+            </button>
+
+            <button
+                    hx-get="/systems/current"
+                    hx-target="#modal-container">
+                Check system
+            </button>
+
+            <button
+                    hx-post="/cargo/sell-all"
+                    hx-target="#modal-container">
+                Sell
+            </button>
+        </div>
+
+        <!-- center container -->
+        <div class="flex flex-col">
+            <div id="modal-container"></div>
+        </div>
+
+        <div id="error-panel" class="text-red-400"></div>
+
+        <div class="w-48"></div>
+    </div>
+
+</div>
+</body>
+</html>

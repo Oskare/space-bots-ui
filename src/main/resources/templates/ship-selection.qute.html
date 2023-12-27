@@ -1,0 +1,19 @@
+<div id="ship-selection-form">
+    <form>
+        <ul>
+            {#for shipType in shipTypes}
+                <li>
+                <label>
+                <input name="{shipType.id}Count" type="text"/>{shipType.name} ({shipType.price} credits)
+                </label>
+                </li>
+            {/for}
+        </ul>
+        <button type="submit"
+                hx-post="/ship/purchase"
+                hx-ext="json-enc"
+                hx-target="#modal-container">
+            Purchase
+        </button>
+    </form>
+</div>

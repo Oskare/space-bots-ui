@@ -1,0 +1,13 @@
+<div class="flex flex-col">
+    {#for neighboringSystem in system.neighboringSystems}
+            <div>{neighboringSystem.systemId}</div>
+        <button
+            hx-post="/systems/travel"
+            name="systemId"
+            value="{neighboringSystem.systemId}"
+            hx-target="#modal-container"
+            hx-ext="json-enc">
+                Travel
+        </button>
+    {/for}
+</div>

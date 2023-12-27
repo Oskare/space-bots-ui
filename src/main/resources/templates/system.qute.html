@@ -1,0 +1,8 @@
+<p>Name: {system.name} [{system.X}, {system.Y}]</p>
+<p>Station: {system.station ? "" : "(none)"} {system.station.directSell ? "directSell" : ""} {system.station.buyShips ? "buyShips" : ""}</p>
+<p>Asteroid: {system.asteroid.miningResourceId ?: "(none)"}</p>
+<p>Neighbours:
+    {#for neighboringSystem in system.neighboringSystems}
+        {neighboringSystem.systemId},
+    {/for}
+</p>

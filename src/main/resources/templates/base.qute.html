@@ -53,35 +53,20 @@
 
     <div class="flex flex-row justify-between">
         <div class="flex flex-col w-48">
-            <button
-                    hx-get="/ship/selection"
-                    hx-target="#modal-container">
-                Purchase ships
-            </button>
+            {#menubutton name="Purchase ships" get-url="/ship/selection" }
+            {/menubutton}
 
-            <button
-                    hx-post="/mining"
-                    hx-target="#modal-container">
-                Mine
-            </button>
+            {#menubutton name="Mine" post-url="/mining" }
+            {/menubutton}
 
-            <button
-                hx-get="/systems/selection"
-                hx-target="#modal-container">
-                Travel
-            </button>
+            {#menubutton name="Travel" get-url="/systems/selection" }
+            {/menubutton}
 
-            <button
-                    hx-get="/systems/current"
-                    hx-target="#modal-container">
-                Check system
-            </button>
+            {#menubutton name="Check system" get-url="/systems/current" }
+            {/menubutton}
 
-            <button
-                    hx-post="/cargo/sell-all"
-                    hx-target="#modal-container">
-                Sell
-            </button>
+            {#menubutton name="Sell" post-url="/cargo/sell-all" }
+            {/menubutton}
         </div>
 
         <!-- center container -->

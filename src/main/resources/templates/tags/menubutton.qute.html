@@ -1,0 +1,7 @@
+<button
+        class="border-solid border-2 border-blue-200"
+        {get-url ? "hx-get=" + get-url : ""}
+        {post-url ? "hx-post=" + post-url : ""}
+        hx-target="#modal-container">
+    {name}
+</button>
